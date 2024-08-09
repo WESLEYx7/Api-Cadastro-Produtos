@@ -1,19 +1,19 @@
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
 
-const connection = mysql.createConnection({
+const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1234',
+    password: 'joel0307',
     database: 'novo'
 });
 
-connection.connect();
-
-function mostrarTabelas(callback) {
-    connection.query('SELECT * FROM produto', (error, results) => {
-        if (error) return callback(error);
-        callback(null, results);
-    });
+async function mostrarTabelas() {
+    try {
+        const [results] = await connection.execute('SELECT * FROM produto');
+        return results;
+    } catch (error) {
+        throw console.log(`Deu algo errado na consulta por ${error}`);
+    }
 }
 
 export default { mostrarTabelas, connection };
