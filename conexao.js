@@ -1,9 +1,11 @@
 import mysql from 'mysql2/promise';
 
+//Casa = 1234
+
 const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'joel0307',
+    password: '1234',
     database: 'novo'
 });
 
